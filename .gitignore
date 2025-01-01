@@ -381,3 +381,11 @@ pyrightconfig.json
 .DS_store
 
 poetry.lock
+
+.env.local
+.env.stage
+.env.prod
+
+.env
+.env.*
+!.env.example.*
