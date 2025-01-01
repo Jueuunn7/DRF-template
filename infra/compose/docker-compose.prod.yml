@@ -13,7 +13,7 @@ services:
     container_name: web
     build:
       dockerfile: Dockerfile
-      context: ../../src
+      context: ../../
     env_file:
       - ../../.env
     environment:
@@ -24,14 +24,14 @@ services:
       poetry run python manage.py migrate &&
       poetry run gunicorn --bind  0.0.0.0:8000 --workers 3 --threads 8 core.wsgi:application"
     ]
-    depends_on:
-      - postgres
-      - redis
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+    depends_on:
+      - postgres
+      - redis
 
   postgres:
     container_name: postgres
