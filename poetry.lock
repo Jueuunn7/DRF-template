@@ -54,6 +54,16 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-pytest"
+version = "0.2.0"
+description = "django test runner to use py.test tests"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-pytest-0.2.0.tar.gz", hash = "sha256:de21f20f9e7eb941529d75078b18192506a9f6d4ae80f86fbe2f3bcac8e09d71"},
+]
+
+[[package]]
 name = "django-redis"
 version = "5.4.0"
 description = "Full featured redis cache backend for Django."
@@ -493,4 +503,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.13"
-content-hash = "034e20a59339eba90a0d26d4d7a7f92fcaf909458fc273230916b26b0f490495"
+content-hash = "1d396aa5c36ac0de114ce4fbf95eb7ca507f805f270c8d595565995e0dd5683e"
