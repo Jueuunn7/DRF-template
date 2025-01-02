@@ -5,7 +5,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ../nginx:/etc/nginx/conf.d
     depends_on:
       - web
 
@@ -20,9 +20,8 @@ services:
       - DJANGO_SETTINGS_MODULE=core.settings.prod
     command: [
       "/bin/sh", "-c",
-      "cd src/ &&
-      poetry run python manage.py migrate &&
-      poetry run gunicorn --bind  0.0.0.0:8000 --workers 3 --threads 8 core.wsgi:application"
+      "poetry run python src/manage.py migrate &&
+      poetry run gunicorn --chdir ./src/ --bind 0.0.0.0:8000 --workers 3 --threads 8 core.wsgi:application"
     ]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -43,8 +42,6 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    ports:
-      - "5432:5432"
 
   redis:
     container_name: redis
@@ -52,8 +49,6 @@ services:
     restart: always
     volumes:
       - redis:/data
-    ports:
-      - "6379:6379"
 
 volumes:
   postgres:
